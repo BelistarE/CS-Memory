@@ -1,8 +1,7 @@
-# React + Vite
+# CS-Memory
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Counter Strike 2 memory game for [The Odin Project](https://www.theodinproject.com/)
 
-Currently, two official plugins are available:
+## Resources and Inspiration
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[CSGO API](https://github.com/ByMykel/CSGO-API) created by [ByMykel](https://github.com/ByMykel)
