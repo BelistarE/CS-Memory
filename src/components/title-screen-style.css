@@ -1,0 +1,107 @@
+@font-face {
+  font-family: "CSRegular";
+  src: url("../assets/cs_regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.title-screen {
+  background-color: #e48b1e;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.moving-lines-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to bottom, #be7419 1px, transparent 1px);
+  background-size: 100% 10px;
+  background-repeat: repeat-y;
+  animation: moveLines 40s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes moveLines {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+/*text*/
+h1 {
+  position: relative;
+  font-family: "CSRegular", sans-serif;
+  color: white; /* Text color is white */
+  font-size: 150px;
+  overflow: hidden; /* Ensure content doesn't overflow */
+  /* Apply glitch effect continuously */
+}
+
+h1::before,
+h1::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  color: white; /* Ensure ::before and ::after have the same color as h1 */
+}
+
+h1::before {
+  animation: glitch 650ms infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translate(-0.025em, -0.0125em);
+}
+
+h1::after {
+  animation: glitch 375ms infinite;
+  clip-path: polygon(0 65%, 100% 20%, 100% 100%, 0 70%);
+  transform: translate(0.0125em, 0.025em);
+}
+
+/* Stop the glitch effect on hover */
+h1:hover::before,
+h1:hover::after {
+  animation: none;
+  clip-path: none;
+  transform: none;
+}
+
+@keyframes glitch {
+  0% {
+    color: black; /* Glitch color */
+    text-shadow: 0.05em 0 0 orange, -0.025em -0.05em 0 white,
+      0.025em 0.05em 0 black;
+  }
+  14% {
+    text-shadow: 0.05em 0 0 orange, -0.025em -0.05em 0 white,
+      0.025em 0.05em 0 black;
+  }
+  15% {
+    color: white;
+    text-shadow: -0.05em -0.025em 0 orange, 0.025em -0.025em 0 white,
+      -0.05em -0.05em 0 black;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 orange, 0.025em -0.025em 0 white,
+      -0.05em -0.05em 0 black;
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 orange, -0.025em 0.05em 0 white,
+      0 -0.05em 0 black;
+  }
+  99% {
+    color: white;
+    text-shadow: 0.025em 0.05em 0 black, -0.025em 0.05em 0 white,
+      0 -0.05em 0 black;
+  }
+  100% {
+    text-shadow: -0.025em 0 0 orange, -0.025em -0.025em 0 white,
+      -0.025em -0.05em 0 black;
+  }
+}
