@@ -55,15 +55,13 @@
 h1 {
   position: relative;
   font-family: "CSRegular", sans-serif;
-  color: white; /* Text color is white */
+  color: white;
   font-size: 150px;
-  overflow: hidden; /* Ensure content doesn't overflow */
-  /* Center the text */
+  overflow: hidden;
+
   text-align: center;
-  /* Optional: Add padding or margins to adjust spacing */
 }
 
-/* Ensure ::before and ::after pseudo-elements cover only the text */
 h1::before,
 h1::after {
   content: attr(data-text);
@@ -71,12 +69,11 @@ h1::after {
   top: 0;
   left: 0;
   opacity: 0.8;
-  color: white; /* Ensure ::before and ::after have the same color as h1 */
+  color: white;
   width: 100%;
-  text-align: center; /* Center text in pseudo-elements */
+  text-align: center;
 }
 
-/* Adjust glitch effect for pseudo-elements */
 h1::before {
   animation: glitch 650ms infinite;
   clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
@@ -89,7 +86,6 @@ h1::after {
   transform: translate(0.0125em, 0.025em);
 }
 
-/* Stop the glitch effect on hover */
 h1:hover::before,
 h1:hover::after {
   animation: none;
@@ -99,7 +95,7 @@ h1:hover::after {
 
 @keyframes glitch {
   0% {
-    color: black; /* Glitch color */
+    color: black;
     text-shadow: 0.05em 0 0 orange, -0.025em -0.05em 0 white,
       0.025em 0.05em 0 black;
   }
@@ -135,14 +131,16 @@ h1:hover::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30%;
+  position: relative;
 }
-
+.buttons > * {
+  width: 100%;
+  margin: 0.5rem;
+}
 button {
   background-color: rgba(56, 56, 56, 0.358);
   border-radius: 10%;
   padding: 10%;
-  margin: 0.5rem;
   width: 100%;
   border: none;
   font-size: 2rem;
@@ -222,4 +220,62 @@ button:hover span::after {
     clip-path: inset(70% 0 0 0);
     transform: translate(-2px, 2px);
   }
+}
+.sound-icon {
+  position: absolute;
+  width: 50px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  flex: 1;
+  right: -60px;
+}
+.sound {
+  display: flex;
+  align-items: center;
+}
+.sound-icon svg {
+  width: 100%;
+  height: auto;
+  fill: white;
+}
+.credits {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.credits-modal {
+  width: 70%;
+  height: 70%;
+  background-color: #fff; /* White background */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.credits-modal button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  background-color: #444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.credits-modal button:hover {
+  background-color: #666;
 }
