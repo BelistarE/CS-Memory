@@ -35,6 +35,17 @@ function Credits({ showCredits, closeCredits }) {
               The Odin Project
             </a>
           </p>
+          <p>
+            created by{" "}
+            <a
+              className="linkblue"
+              href="https://github.com/BelistarE"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Isabeli Estefano
+            </a>
+          </p>
 
           <h2>Resources and Inspiration</h2>
           <ul>

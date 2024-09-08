@@ -141,8 +141,11 @@ h1:hover::after {
 .buttons > * {
   margin: 0.5rem;
   width: 100%;
+  cursor: url("../assets/crosshair_focus.png") 16 16, pointer;
 }
-
+.buttons > * > * {
+  cursor: url("../assets/crosshair_focus.png") 16 16, pointer;
+}
 /* Button styling */
 button {
   background-color: rgba(56, 56, 56, 0.358);
@@ -274,7 +277,8 @@ button:hover span::after {
   cursor: pointer;
   border: none;
   flex: 1;
-  right: -60px;
+  right: -70px;
+  cursor: url("../assets/crosshair_focus.png") 16 16, pointer;
 }
 .sound {
   display: flex;
@@ -396,6 +400,7 @@ div .exit {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: url("../assets/crosshair_focus.png") 16 16, pointer;
 }
 .top {
   align-self: flex-end;

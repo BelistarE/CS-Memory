@@ -1,0 +1,9 @@
+body,
+html {
+  cursor: url("./assets/crosshair.png") 16 16, auto;
+}
+
+a,
+button {
+  cursor: url("./assets/crosshair_focus.png") 16 16, pointer;
+}
