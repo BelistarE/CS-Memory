@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { Cross1Icon } from "@radix-ui/react-icons";
+import mainmenuSound from "../assets/sounds/submenu_scroll_01.wav";
 
 function Credits({ showCredits, closeCredits }) {
   if (!showCredits) {
     return null;
   }
 
+  const audio = new Audio(mainmenuSound);
+
+  // Function to handle the click event
+  const handleCloseCredits = () => {
+    audio.play(); // Play the sound
+    closeCredits(); // Call the closeCredits function
+  };
   return (
     <div className="credits">
       <div className="credits-modal">
         <div className="top">
-          <button className="exit" onClick={closeCredits}>
+          <button className="exit" onClick={handleCloseCredits}>
             <Cross1Icon />
           </button>
         </div>

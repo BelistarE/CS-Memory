@@ -7,6 +7,7 @@ import mainmenuPressPlay from "../assets/sounds/mainmenu_press_play.wav";
 import mainmenuSound from "../assets/sounds/mainmenu_press_settings_02.wav";
 import creditsSound from "../assets/sounds/mainmenu_press_news_01.wav";
 import soundToggleFile from "../assets/sounds/submenu_scroll_01.wav";
+import rollover from "../assets/sounds/mainmenu_rollover_01.wav";
 
 function TitleScreen() {
   const [isSoundOn, setIsSoundOn] = useState(true);
@@ -48,11 +49,17 @@ function TitleScreen() {
       </h1>
       <div className="content">
         <div className="buttons">
-          <button onClick={() => playSound(mainmenuPressPlay)}>
+          <button
+            onClick={() => playSound(mainmenuPressPlay)}
+            onMouseEnter={() => playSound(rollover)}
+          >
             <span data-text="PLAY">PLAY</span>
           </button>
           <div className="sound">
-            <button onClick={handleSoundButtonClick}>
+            <button
+              onClick={handleSoundButtonClick}
+              onMouseEnter={() => playSound(rollover)}
+            >
               <span data-text="SOUND">SOUND</span>
             </button>
             {showSoundButton && (
@@ -61,7 +68,10 @@ function TitleScreen() {
               </button>
             )}
           </div>
-          <button onClick={openCredits}>
+          <button
+            onClick={openCredits}
+            onMouseEnter={() => playSound(rollover)}
+          >
             <span data-text="CREDITS">CREDITS</span>
           </button>
         </div>

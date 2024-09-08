@@ -133,6 +133,9 @@ h1:hover::after {
   align-items: stretch; /* Ensure buttons stretch to the same width */
   position: relative;
 }
+.buttons > button {
+  backdrop-filter: blur(10px);
+}
 
 /* Each button takes up the full width of the container */
 .buttons > * {
@@ -347,7 +350,7 @@ button:hover span::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
 }
 
