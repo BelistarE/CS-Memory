@@ -127,36 +127,49 @@ h1:hover::after {
   }
 }
 /*button*/
+/* Flexbox container for buttons */
 .buttons {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch; /* Ensure buttons stretch to the same width */
   position: relative;
 }
+
+/* Each button takes up the full width of the container */
 .buttons > * {
-  width: 100%;
   margin: 0.5rem;
+  width: 100%;
 }
+
+/* Button styling */
 button {
   background-color: rgba(56, 56, 56, 0.358);
   border-radius: 10%;
-  padding: 10%;
-  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   border: none;
   font-size: 2rem;
   font-family: "CSRegular", sans-serif;
-  color: white; /* Text color */
+  color: white;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition */
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
+button {
+  width: 100%; /* All buttons will match the width of the largest one */
+}
+
+/* Hover effect for buttons */
 button:hover {
   background-color: rgba(56, 56, 56, 0.5);
 }
 
-/* Glitch effect for button text */
 button span {
   position: relative;
   display: inline-block;
@@ -190,6 +203,37 @@ button:hover span::before {
 
 button:hover span::after {
   animation: glitch2 250ms infinite;
+}
+
+/* Glitch animations */
+@keyframes glitch1 {
+  0% {
+    clip-path: inset(0 0 70% 0);
+    transform: translate(2px, -2px);
+  }
+  50% {
+    clip-path: inset(0 0 30% 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip-path: inset(0 0 70% 0);
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes glitch2 {
+  0% {
+    clip-path: inset(70% 0 0 0);
+    transform: translate(-2px, 2px);
+  }
+  50% {
+    clip-path: inset(30% 0 0 0);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    clip-path: inset(70% 0 0 0);
+    transform: translate(-2px, 2px);
+  }
 }
 
 @keyframes glitch1 {
