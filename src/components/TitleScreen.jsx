@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./title-screen-style.css";
 import { SpeakerLoudIcon, SpeakerOffIcon } from "@radix-ui/react-icons";
-import Credits from "./Credits"; // Import the Credits component
+import Credits from "./Credits";
+import handsgif from "../assets/handsgif.gif";
 
 function TitleScreen() {
   const [isSoundOn, setIsSoundOn] = useState(true);
@@ -27,6 +28,7 @@ function TitleScreen() {
   return (
     <div className="title-screen">
       <div className="moving-lines-background"></div>
+
       <h1 className="cs-memory" data-text="CS-MEMORY">
         CS-MEMORY
       </h1>
