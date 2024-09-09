@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+.slideshow-image {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  z-index: 1; /* Images will be at a lower z-index */
+}
+
+.fade-in {
+  opacity: 1;
+  z-index: 2; /* Faded-in image will be higher than others */
+}
+
+.fade-out {
+  opacity: 0;
+  z-index: 1;
+}
+
+/* Difficulty container */
+.difficulty {
+  position: fixed;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.difficulties {
+  display: flex;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  pointer-events: all;
+  position: relative;
+}
+
+.rectangle {
+  height: 100px;
+  width: 200px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttons {
+  z-index: 4;
+}

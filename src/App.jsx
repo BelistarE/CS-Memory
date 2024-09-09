@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "./App.css";
 import TitleScreen from "./components/TitleScreen";
+import DifficultySelect from "./components/DifficultySelect";
 import pageStartup from "./assets/sounds/logo_startup.wav";
 
 function App() {
@@ -18,9 +19,18 @@ function App() {
       document.removeEventListener("mousemove", playSoundOnMouseMove);
     };
   }, []);
+  const [showDifficulty, setShowDifficulty] = useState(false);
+
+  const handleStartGame = () => {
+    setShowDifficulty(true);
+  };
   return (
     <div className="App">
-      <TitleScreen />
+      {showDifficulty ? (
+        <DifficultySelect />
+      ) : (
+        <TitleScreen onStartGame={handleStartGame} />
+      )}
     </div>
   );
 }

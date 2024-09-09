@@ -9,7 +9,7 @@ import creditsSound from "../assets/sounds/mainmenu_press_news_01.wav";
 import soundToggleFile from "../assets/sounds/submenu_scroll_01.wav";
 import rollover from "../assets/sounds/mainmenu_rollover_01.wav";
 
-function TitleScreen() {
+function TitleScreen({ onStartGame }) {
   const [isSoundOn, setIsSoundOn] = useState(true);
   const [showSoundButton, setShowSoundButton] = useState(false);
   const [showCredits, setShowCredits] = useState(false);
@@ -50,7 +50,10 @@ function TitleScreen() {
       <div className="content">
         <div className="buttons">
           <button
-            onClick={() => playSound(mainmenuPressPlay)}
+            onClick={() => {
+              playSound(mainmenuPressPlay);
+              onStartGame();
+            }}
             onMouseEnter={() => playSound(rollover)}
           >
             <span data-text="PLAY">PLAY</span>
