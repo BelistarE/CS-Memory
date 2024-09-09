@@ -13,12 +13,12 @@ body {
   object-fit: cover;
   opacity: 0;
   transition: opacity 2s ease-in-out;
-  z-index: 1; /* Images will be at a lower z-index */
+  z-index: 1;
 }
 
 .fade-in {
   opacity: 1;
-  z-index: 2; /* Faded-in image will be higher than others */
+  z-index: 2;
 }
 
 .fade-out {
@@ -28,31 +28,127 @@ body {
 
 /* Difficulty container */
 .difficulty {
-  position: fixed;
   z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
 }
 .difficulties {
   display: flex;
   z-index: 4;
-  background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   pointer-events: all;
   position: relative;
+  width: 100%;
 }
 
 .rectangle {
-  height: 100px;
-  width: 200px;
-  background-color: black;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2rem;
+  border-radius: 0px;
+  border: 5px solid white;
+  backdrop-filter: blur(10px);
+  font-family: "Saira Condensed", system-ui;
+  font-weight: 600;
+  box-sizing: border-box;
+  width: 25%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
-.buttons {
+.difficulty .buttons {
   z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+.difficulty .buttons > button {
+  font-family: "Saira Condensed", system-ui;
+  font-weight: 600;
+  width: 20%;
+  border-radius: 0px;
+  font-size: 2.5em;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.content-diff {
+  margin: 3rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 4;
+}
+
+.go {
+  position: relative;
+  background-image: url("../assets/abstract.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #4ec600;
+  color: #4ec600;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 20px;
+  z-index: 4; /* Ensures the text is above the GIF */
+}
+
+/* Overlay the GIF */
+.go::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/fading-squares.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply; /* Removes the black background */
+  opacity: 0.3; /* Makes the GIF slightly transparent */
+  z-index: 1; /* Places the GIF below the text */
+  pointer-events: none; /* Ensure the GIF doesn't interfere with interactions */
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+.go::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Initially transparent */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  z-index: 3; /* Places the overlay on top of the GIF and background */
+  pointer-events: none;
+}
+
+.go:hover::after {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.go > p {
+  position: relative;
+  z-index: 5;
+  transition: color 0.3s ease;
+}
+
+.go > p:hover {
+  color: #286401cc;
 }

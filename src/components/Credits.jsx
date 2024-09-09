@@ -14,11 +14,20 @@ function Credits({ showCredits, closeCredits }) {
     audio.play(); // Play the sound
     closeCredits(); // Call the closeCredits function
   };
+  const playSound = (soundFile) => {
+    const audio = new Audio(soundFile);
+    audio.play();
+  };
+
   return (
     <div className="credits">
       <div className="credits-modal">
         <div className="top">
-          <button className="exit" onClick={handleCloseCredits}>
+          <button
+            className="exit"
+            onClick={handleCloseCredits}
+            onMouseEnter={() => playSound(mainmenuSound)}
+          >
             <Cross1Icon />
           </button>
         </div>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import dust2 from "../assets/background-images/dust2.jpg";
-import mirage from "../assets/background-images/nuke.jpg";
+import nuke from "../assets/background-images/nuke.jpg";
+import mirage from "../assets/background-images/mirage.jpg";
+import vertigo from "../assets/background-images/vertigo.webp";
 
 const Slideshow = () => {
-  const images = [dust2, mirage];
+  const images = [dust2, mirage, nuke, vertigo];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
 

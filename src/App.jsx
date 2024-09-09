@@ -20,6 +20,7 @@ function App() {
     };
   }, []);
   const [showDifficulty, setShowDifficulty] = useState(false);
+  const [screen, setScreen] = useState("title");
 
   const handleStartGame = () => {
     setShowDifficulty(true);

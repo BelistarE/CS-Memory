@@ -8,22 +8,24 @@ function Difficulty() {
       <Slideshow />
       <div className="content-diff">
         <div className="difficulties">
-          <div className="rectangle">
+          <button className="rectangle">
             <p>Easy</p>
-          </div>
-          <div className="rectangle">
+          </button>
+          <button className="rectangle">
             <p>Medium</p>
-          </div>
-          <div className="rectangle">
+          </button>
+          <button className="rectangle">
             <p>Hard</p>
-          </div>
-          <div className="rectangle">
+          </button>
+          <button className="rectangle">
             <p>Impossible</p>
-          </div>
+          </button>
         </div>
         <div className="buttons">
           <button>Home</button>
-          <button>GO</button>
+          <button className="go">
+            <p>GO</p>
+          </button>
         </div>
       </div>
     </div>
