@@ -1,6 +1,8 @@
 # CS-Memory
 
 A Counter Strike 2 memory game for [The Odin Project](https://www.theodinproject.com/)
+![Title Screen](screenshots/titlescreen.png)
+
 
 ## Resources and Inspiration
 
