@@ -21,10 +21,16 @@ function App() {
     };
   }, []);
 
-  const [screen, setScreen] = useState("title");
+  const [screen, setScreen] = useState("title"); // Screen state to navigate between components
+  const [selectedDifficulty, setSelectedDifficulty] = useState("medium"); // Default to 'medium'
 
   const handleStartGame = () => {
     setScreen("difficulty");
+  };
+
+  const handlePlayGame = (difficulty) => {
+    setSelectedDifficulty(difficulty); // Pass the selected difficulty
+    setScreen("gameBoard"); // Navigate to the GameBoard screen
   };
 
   return (
@@ -33,10 +39,12 @@ function App() {
       {screen === "difficulty" && (
         <Difficulty
           onHome={() => setScreen("title")}
-          onPlay={() => setScreen("gameBoard")}
+          onPlay={handlePlayGame} // Pass `handlePlayGame` to handle the "Go" button click
+          selectedDifficulty={selectedDifficulty} // Pass selected difficulty (optional)
         />
       )}
-      {screen === "gameBoard" && <GameBoard />}
+      {screen === "gameBoard" && <GameBoard difficulty={selectedDifficulty} />}{" "}
+      {/* Pass difficulty to GameBoard */}
     </div>
   );
 }

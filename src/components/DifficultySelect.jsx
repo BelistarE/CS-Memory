@@ -11,11 +11,9 @@ import medium from "../assets/medium.png";
 import hard from "../assets/hard.png";
 import impossible from "../assets/impossible.png";
 
-let selectedDifficulty = "medium"; // Set default selected difficulty
-
-function Difficulty({ onHome, onPlay }) {
-  const [selected, setSelected] = useState("medium"); // Initialize state to "medium"
-
+let selectedDifficulty = "medium";
+function Difficulty({ onHome, onPlay, selectedDifficulty: initialDifficulty }) {
+  const [selected, setSelected] = useState(initialDifficulty || "medium");
   const handleDifficultyClick = (difficulty) => {
     setSelected(difficulty); // Update local state
     selectedDifficulty = difficulty; // Update global variable
@@ -24,10 +22,9 @@ function Difficulty({ onHome, onPlay }) {
 
   const handleGoClick = () => {
     if (selected) {
-      onPlay();
+      onPlay(selected); // Pass the selected difficulty to the parent (App.jsx)
     }
   };
-
   return (
     <div className="difficulty">
       <Slideshow />

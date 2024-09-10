@@ -21,12 +21,29 @@
 
 .title-screen {
   background-color: #e48b1e;
+  background-image: url("../assets/license_bg_png.png");
+  background-size: cover;
+  background-position: right bottom;
+  background-repeat: no-repeat;
   height: 100vh;
   width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.title-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../assets/license_bg_png.png");
+  background-size: cover;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  filter: blur(10px);
 }
 
 .moving-lines-background {
@@ -57,7 +74,8 @@ h1 {
   color: white;
   font-size: 150px;
   overflow: hidden;
-
+  padding-left: 10px;
+  padding-right: 10px;
   text-align: center;
 }
 
@@ -71,11 +89,12 @@ h1::after {
   color: white;
   width: 100%;
   text-align: center;
+  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
 }
 
 h1::before {
   animation: glitch 650ms infinite;
-  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 45%);
   transform: translate(-0.025em, -0.0125em);
 }
 
@@ -94,43 +113,42 @@ h1:hover::after {
 
 @keyframes glitch {
   0% {
-    color: black;
-    text-shadow: 0.05em 0 0 orange, -0.025em -0.05em 0 white,
+    color: white;
+    text-shadow: 0.05em 0 0 orange, -0.025em -0.05em 0 black,
       0.025em 0.05em 0 black;
   }
   14% {
-    text-shadow: 0.05em 0 0 orange, -0.025em -0.05em 0 white,
+    text-shadow: 0.05em 0 0 orange, -0.025em -0.05em 0 black,
       0.025em 0.05em 0 black;
   }
   15% {
     color: white;
-    text-shadow: -0.05em -0.025em 0 orange, 0.025em -0.025em 0 white,
+    text-shadow: -0.05em -0.025em 0 orange, 0.025em -0.025em 0 black,
       -0.05em -0.05em 0 black;
   }
   49% {
-    text-shadow: -0.05em -0.025em 0 orange, 0.025em -0.025em 0 white,
+    text-shadow: -0.05em -0.025em 0 orange, 0.025em -0.025em 0 black,
       -0.05em -0.05em 0 black;
   }
   50% {
-    text-shadow: 0.025em 0.05em 0 orange, -0.025em 0.05em 0 white,
+    text-shadow: 0.025em 0.05em 0 orange, -0.025em 0.05em 0 black,
       0 -0.05em 0 black;
   }
   99% {
     color: white;
-    text-shadow: 0.025em 0.05em 0 black, -0.025em 0.05em 0 white,
+    text-shadow: 0.025em 0.05em 0 black, -0.025em 0.05em 0 black,
       0 -0.05em 0 black;
   }
   100% {
-    text-shadow: -0.025em 0 0 orange, -0.025em -0.025em 0 white,
+    text-shadow: -0.025em 0 0 orange, -0.025em -0.025em 0 black,
       -0.025em -0.05em 0 black;
   }
 }
 /*button*/
-/* Flexbox container for buttons */
 .buttons {
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* Ensure buttons stretch to the same width */
+  align-items: stretch;
   position: relative;
 }
 .buttons > button {
@@ -138,7 +156,6 @@ h1:hover::after {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Each button takes up the full width of the container */
 .buttons > * {
   margin: 0.5rem;
   width: 100%;
@@ -358,6 +375,7 @@ button:hover span::after {
   height: 100vh;
   z-index: 1;
   pointer-events: none;
+  display: none;
 }
 
 .fullscreen-gif img {
