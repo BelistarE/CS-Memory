@@ -301,10 +301,12 @@ button:hover span::after {
   flex: 1;
   right: -70px;
   cursor: url("../assets/crosshair_focus.png") 16 16, pointer;
+  backdrop-filter: blur(10px);
 }
 .sound {
   display: flex;
   align-items: center;
+  backdrop-filter: blur(10px);
 }
 .sound-icon svg {
   width: 100%;
