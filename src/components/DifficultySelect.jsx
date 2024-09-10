@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./difficulty-style.css";
+import GameBoard from "./Gameboard";
 import Slideshow from "./Midori";
 import silver from "../assets/silver.png";
 import gn from "../assets/goldNova1.png";
@@ -10,17 +11,23 @@ import medium from "../assets/medium.png";
 import hard from "../assets/hard.png";
 import impossible from "../assets/impossible.png";
 
-let selectedDifficulty = null;
+let selectedDifficulty = "medium"; // Set default selected difficulty
 
-function Difficulty({ onHome }) {
-  const [selected, setSelected] = useState(null); // Local state to track selected button
+function Difficulty({ onHome, onPlay }) {
+  const [selected, setSelected] = useState("medium"); // Initialize state to "medium"
 
   const handleDifficultyClick = (difficulty) => {
     setSelected(difficulty); // Update local state
     selectedDifficulty = difficulty; // Update global variable
     console.log(`Selected difficulty: ${selectedDifficulty}`);
   };
-  const handleGoClick = () => {};
+
+  const handleGoClick = () => {
+    if (selected) {
+      onPlay();
+    }
+  };
+
   return (
     <div className="difficulty">
       <Slideshow />
@@ -71,4 +78,5 @@ function Difficulty({ onHome }) {
     </div>
   );
 }
+
 export default Difficulty;

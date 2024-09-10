@@ -4,6 +4,7 @@ import "./App.css";
 import TitleScreen from "./components/TitleScreen";
 import Difficulty from "./components/DifficultySelect";
 import pageStartup from "./assets/sounds/logo_startup.wav";
+import GameBoard from "./components/Gameboard";
 
 function App() {
   useEffect(() => {
@@ -30,8 +31,12 @@ function App() {
     <div className="App">
       {screen === "title" && <TitleScreen onStartGame={handleStartGame} />}
       {screen === "difficulty" && (
-        <Difficulty onHome={() => setScreen("title")} />
+        <Difficulty
+          onHome={() => setScreen("title")}
+          onPlay={() => setScreen("gameBoard")}
+        />
       )}
+      {screen === "gameBoard" && <GameBoard />}
     </div>
   );
 }
