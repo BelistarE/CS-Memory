@@ -4,27 +4,37 @@ import loadingPlaceholder from "../assets/loading_placeholder.png";
 import home from "../assets/home.png";
 import Warning from "./Warning";
 const getNumberOfTiles = (difficulty) => {
-  let tiles;
+  let tiles, columns, rows;
 
   switch (difficulty) {
     case "easy":
       tiles = 9;
+      columns = 3;
+      rows = 3;
       break;
     case "medium":
       tiles = 12;
+      columns = 4;
+      rows = 3;
       break;
     case "hard":
-      tiles = 16;
+      tiles = 15;
+      columns = 5;
+      rows = 3;
       break;
     case "impossible":
-      tiles = 20;
+      tiles = 18;
+      columns = 6;
+      rows = 3;
       break;
     default:
       tiles = 8;
+      columns = 4;
+      rows = 2;
       break;
   }
 
-  return tiles;
+  return { tiles, columns, rows };
 };
 
 const fetchRandomSkins = async (numberOfSkins) => {
@@ -62,9 +72,7 @@ const GameBoard = ({ difficulty, onHome }) => {
   //stuff for the game logic
   const [skins, setSkins] = useState([]);
 
-  const tiles = getNumberOfTiles(difficulty);
-  const columns = Math.ceil(Math.sqrt(tiles));
-  const rows = Math.ceil(tiles / columns);
+  const { tiles, columns, rows } = getNumberOfTiles(difficulty);
 
   useEffect(() => {
     fetchRandomSkins(tiles).then(setSkins);
@@ -97,6 +105,9 @@ const GameBoard = ({ difficulty, onHome }) => {
           <img src={home} alt="Home" />
         </button>
         <p>The rules are simple... don&apos;t click on the same skin twice!</p>
+        <div className="score">
+          <p>Score:</p>
+        </div>
       </div>
       <div className="inventory">
         <div
@@ -113,7 +124,7 @@ const GameBoard = ({ difficulty, onHome }) => {
             return (
               <div key={index} className="tile">
                 <button
-                  style={{ borderBottom: `5px solid ${borderColor}` }}
+                  style={{ borderBottom: `7px solid ${borderColor}` }}
                   onClick={() => handleTileClick(index)}
                 >
                   {skin.name ? (
@@ -124,7 +135,17 @@ const GameBoard = ({ difficulty, onHome }) => {
                     <img src={loadingPlaceholder} alt="Loading..." />
                   )}
                 </button>
-                <p>{skin.name}</p>
+                {skin.name ? (
+                  <>
+                    <p className="gun">{skin.name.split(" | ")[0]}</p>
+                    <p className="skinname">{skin.name.split(" | ")[1]}</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="gun">Loading...</p>
+                    <p className="skinname"></p>
+                  </>
+                )}
               </div>
             );
           })}

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./title-screen-style.css";
 import { SpeakerLoudIcon, SpeakerOffIcon } from "@radix-ui/react-icons";
 import Credits from "./Credits";
@@ -8,20 +7,19 @@ import mainmenuSound from "../assets/sounds/mainmenu_press_settings_02.wav";
 import creditsSound from "../assets/sounds/mainmenu_press_news_01.wav";
 import soundToggleFile from "../assets/sounds/submenu_scroll_01.wav";
 import rollover from "../assets/sounds/mainmenu_rollover_01.wav";
+import React, { useState } from "react";
+import { useSound } from "./SoundContext";
 
 function TitleScreen({ onStartGame }) {
-  const [isSoundOn, setIsSoundOn] = useState(true);
+  const { isSoundOn, toggleSound } = useSound();
   const [showSoundButton, setShowSoundButton] = useState(false);
   const [showCredits, setShowCredits] = useState(false);
 
   const playSound = (soundFile) => {
-    const audio = new Audio(soundFile);
-    audio.play();
-  };
-
-  const handleSoundToggle = () => {
-    setIsSoundOn((prev) => !prev);
-    playSound(soundToggleFile);
+    if (isSoundOn) {
+      const audio = new Audio(soundFile);
+      audio.play();
+    }
   };
 
   const handleSoundButtonClick = () => {
@@ -66,7 +64,7 @@ function TitleScreen({ onStartGame }) {
               <span data-text="SOUND">SOUND</span>
             </button>
             {showSoundButton && (
-              <button className="sound-icon" onClick={handleSoundToggle}>
+              <button className="sound-icon" onClick={toggleSound}>
                 {isSoundOn ? <SpeakerLoudIcon /> : <SpeakerOffIcon />}
               </button>
             )}

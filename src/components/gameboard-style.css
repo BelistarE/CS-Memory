@@ -9,7 +9,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
+
 .gameboard::after {
   content: "";
   position: absolute;
@@ -21,12 +23,35 @@
   background-position: center;
   background-repeat: repeat;
   opacity: 0.1;
+  pointer-events: none;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
 }
 .gameboard > * {
   z-index: 3;
 }
 .inventory {
+  flex-grow: 1;
+  overflow-y: auto;
+  width: 100%;
   display: flex;
+  justify-content: center;
+}
+.weapons {
+  width: fit-content;
+  gap: 1.5rem;
+}
+.skinname {
+  font-weight: 400;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.gun {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .inventory img {
@@ -38,11 +63,11 @@
   font-family: "Saira Condensed", system-ui;
   font-size: 1rem;
   padding: 0px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   border-radius: 0px;
   background: linear-gradient(to bottom, #696161, #c1c1c198);
-}
-.weapons {
-  gap: 25px;
+  width: fit-content;
 }
 .weapons div {
   border-radius: 0px;
@@ -54,35 +79,34 @@
   width: fit-content;
   filter: none;
   z-index: 5;
+  padding: 1rem;
+  margin-left: 2rem;
 }
 .home img {
-  height: 1rem;
+  height: 1.5rem;
 }
-
+.score {
+  margin-right: 2rem;
+}
 .tile button {
 }
 .tile {
   color: white;
   font-weight: bold;
-  margin-bottom: 1rem;
 }
 
 .topbar {
   width: 100%;
   background-color: rgba(63, 60, 60, 0.518);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   display: flex;
-  justify-content: center; /* Center content horizontally */
+  padding: 0.4rem;
+  justify-content: space-between;
   align-items: center; /* Align items vertically */
   position: relative; /* For absolute positioning of the button */
   color: white;
   font-family: "Saira Condensed", system-ui;
   font-size: 1.5rem;
-}
-
-.topbar button {
-  position: absolute;
-  left: 0; /* Align button to the left */
 }
 
 .topbar p {
@@ -167,4 +191,9 @@
   display: flex;
   justify-content: space-around;
   padding-top: 1rem;
+}
+.lower-warning button {
+  width: 30%;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
