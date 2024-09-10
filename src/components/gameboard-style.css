@@ -68,13 +68,32 @@
 }
 
 .topbar {
-  width: 100vw;
+  width: 100%;
   background-color: rgba(63, 60, 60, 0.518);
   margin-bottom: 2rem;
   display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Align items vertically */
+  position: relative; /* For absolute positioning of the button */
+  color: white;
+  font-family: "Saira Condensed", system-ui;
+  font-size: 1.5rem;
 }
+
+.topbar button {
+  position: absolute;
+  left: 0; /* Align button to the left */
+}
+
+.topbar p {
+  white-space: nowrap; /* Prevent text from breaking into multiple lines */
+  text-align: center;
+  margin: 0; /* Remove default margin */
+}
+
 .topbar::after {
   content: "";
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -84,6 +103,7 @@
   background-repeat: repeat;
   opacity: 0.1;
 }
+
 .warning {
   position: fixed;
   top: 0;

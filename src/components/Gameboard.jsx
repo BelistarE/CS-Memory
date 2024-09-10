@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./gameboard-style.css";
+import loadingPlaceholder from "../assets/loading_placeholder.png";
 import home from "../assets/home.png";
 import Warning from "./Warning";
 const getNumberOfTiles = (difficulty) => {
@@ -95,6 +96,7 @@ const GameBoard = ({ difficulty, onHome }) => {
         <button className="home" onClick={openWarning}>
           <img src={home} alt="Home" />
         </button>
+        <p>The rules are simple... don&apos;t click on the same skin twice!</p>
       </div>
       <div className="inventory">
         <div
@@ -119,7 +121,7 @@ const GameBoard = ({ difficulty, onHome }) => {
                       <img src={skin.image} alt={skin.name} />
                     </>
                   ) : (
-                    <p>Loading...</p>
+                    <img src={loadingPlaceholder} alt="Loading..." />
                   )}
                 </button>
                 <p>{skin.name}</p>
