@@ -1,0 +1,81 @@
+.gameboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #614c45;
+  height: 100vh;
+  position: relative;
+}
+.gameboard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../assets/bluedots_large.png);
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 0.1;
+}
+.gameboard > * {
+  z-index: 3;
+}
+.inventory {
+  display: flex;
+}
+
+.inventory img {
+  width: 10rem;
+  height: auto;
+}
+
+.weapons button {
+  font-family: "Saira Condensed", system-ui;
+  font-size: 1rem;
+  padding: 0px;
+  border-radius: 0px;
+  background: linear-gradient(to bottom, #696161, #d2d2d2);
+}
+.weapons {
+  gap: 25px;
+}
+.weapons div {
+  border-radius: 0px;
+}
+
+.home {
+  background: none;
+  box-shadow: none;
+  width: fit-content;
+  filter: none;
+}
+.home img {
+  height: 1rem;
+}
+
+.tile button {
+}
+.tile {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.topbar {
+  width: 100vw;
+  background-color: rgba(63, 60, 60, 0.518);
+  margin-bottom: 2rem;
+  display: flex;
+}
+.topbar::after {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../assets/linemap_png.png);
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 0.1;
+}

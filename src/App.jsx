@@ -26,6 +26,7 @@ function App() {
 
   const handleStartGame = () => {
     setScreen("difficulty");
+    console.log("difficulty screen");
   };
 
   const handlePlayGame = (difficulty) => {
@@ -39,12 +40,13 @@ function App() {
       {screen === "difficulty" && (
         <Difficulty
           onHome={() => setScreen("title")}
-          onPlay={handlePlayGame} // Pass `handlePlayGame` to handle the "Go" button click
-          selectedDifficulty={selectedDifficulty} // Pass selected difficulty (optional)
+          onPlay={handlePlayGame}
+          selectedDifficulty={selectedDifficulty}
         />
       )}
-      {screen === "gameBoard" && <GameBoard difficulty={selectedDifficulty} />}{" "}
-      {/* Pass difficulty to GameBoard */}
+      {screen === "gameBoard" && (
+        <GameBoard difficulty={selectedDifficulty} onhome={handleStartGame} />
+      )}{" "}
     </div>
   );
 }

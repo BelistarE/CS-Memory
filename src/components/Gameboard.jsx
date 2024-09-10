@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "./gameboard-style.css";
+import home from "../assets/home.png";
 const getNumberOfTiles = (difficulty) => {
   let tiles;
 
@@ -30,14 +32,20 @@ const fetchRandomSkins = async (numberOfSkins) => {
     );
     const data = await response.json();
     const shuffled = data.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, numberOfSkins); // Get a random subset of skins
+    return shuffled
+      .slice(0, numberOfSkins)
+      .map((skin) => ({ ...skin, hasBeenClicked: false })); // Add hasBeenClicked property
   } catch (error) {
     console.error("Error fetching skin data:", error);
     return [];
   }
 };
 
-const GameBoard = ({ difficulty }) => {
+const shuffleArray = (array) => {
+  return array.sort(() => 0.5 - Math.random());
+};
+
+const GameBoard = ({ difficulty, onHome }) => {
   const [skins, setSkins] = useState([]);
 
   const tiles = getNumberOfTiles(difficulty);
@@ -45,41 +53,63 @@ const GameBoard = ({ difficulty }) => {
   const rows = Math.ceil(tiles / columns);
 
   useEffect(() => {
-    // Fetch a number of random skins based on the number of tiles
     fetchRandomSkins(tiles).then(setSkins);
   }, [tiles]);
 
   const adjustedTiles = columns * rows;
 
-  return (
-    <div
-      className="game-board"
-      style={{
-        display: "grid",
-        gridTemplateColumns: `repeat(${columns}, 1fr)`,
-        gridTemplateRows: `repeat(${rows}, 1fr)`,
-      }}
-    >
-      {Array.from({ length: adjustedTiles }).map((_, index) => {
-        const skin = skins[index] || {}; // Use an empty object if there's no skin for this tile
+  const handleTileClick = (index) => {
+    setSkins((prevSkins) => {
+      const newSkins = [...prevSkins];
+      const clickedSkin = newSkins[index];
+      if (clickedSkin) {
+        clickedSkin.hasBeenClicked = true;
+        const shuffledSkins = shuffleArray(newSkins);
+        return shuffledSkins;
+      }
+      return prevSkins;
+    });
+  };
 
-        return (
-          <div key={index} className="tile">
-            {skin.name ? (
-              <>
-                <img
-                  src={skin.image} // Adjust this based on the actual property for the image URL
-                  alt={skin.name}
-                  style={{ width: "100%", height: "auto" }} // Adjust as needed
-                />
+  return (
+    <div className="gameboard">
+      <div className="topbar">
+        <button className="home" onClick={onHome}>
+          <img src={home} alt="Home" />
+        </button>
+      </div>
+      <div className="inventory">
+        <div
+          className="weapons"
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${columns}, 1fr)`,
+            gridTemplateRows: `repeat(${rows}, 1fr)`,
+          }}
+        >
+          {Array.from({ length: adjustedTiles }).map((_, index) => {
+            const skin = skins[index] || {}; // Use an empty object if no skin for this tile
+            const borderColor = skin.rarity?.color || "rgb(176, 195, 217);";
+            return (
+              <div key={index} className="tile">
+                <button
+                  style={{ borderBottom: `5px solid ${borderColor}` }}
+                  onClick={() => handleTileClick(index)}
+                >
+                  {skin.name ? (
+                    <>
+                      <img src={skin.image} alt={skin.name} />
+                    </>
+                  ) : (
+                    <p>Loading...</p>
+                  )}
+                </button>
                 <p>{skin.name}</p>
-              </>
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-        );
-      })}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
