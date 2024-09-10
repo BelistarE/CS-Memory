@@ -45,7 +45,10 @@ function App() {
         />
       )}
       {screen === "gameBoard" && (
-        <GameBoard difficulty={selectedDifficulty} onhome={handleStartGame} />
+        <GameBoard
+          difficulty={selectedDifficulty}
+          onHome={() => setScreen("difficulty")}
+        />
       )}{" "}
     </div>
   );

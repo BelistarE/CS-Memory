@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./gameboard-style.css";
 import home from "../assets/home.png";
+import Warning from "./Warning";
 const getNumberOfTiles = (difficulty) => {
   let tiles;
 
   switch (difficulty) {
     case "easy":
-      tiles = 8;
+      tiles = 9;
       break;
     case "medium":
       tiles = 12;
@@ -46,6 +47,18 @@ const shuffleArray = (array) => {
 };
 
 const GameBoard = ({ difficulty, onHome }) => {
+  //stuff for the warning modal
+  const [showWarning, setShowWarning] = useState(false);
+  const cancelHome = () => {
+    setShowWarning(false);
+  };
+  const openWarning = () => {
+    setShowWarning(true);
+  };
+  const goHome = () => {
+    onHome();
+  };
+  //stuff for the game logic
   const [skins, setSkins] = useState([]);
 
   const tiles = getNumberOfTiles(difficulty);
@@ -73,8 +86,13 @@ const GameBoard = ({ difficulty, onHome }) => {
 
   return (
     <div className="gameboard">
+      <Warning
+        showWarning={showWarning}
+        closeWarning={cancelHome}
+        onHome={goHome}
+      />
       <div className="topbar">
-        <button className="home" onClick={onHome}>
+        <button className="home" onClick={openWarning}>
           <img src={home} alt="Home" />
         </button>
       </div>

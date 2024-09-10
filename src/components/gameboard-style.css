@@ -5,6 +5,10 @@
   background-color: #614c45;
   height: 100vh;
   position: relative;
+  background-image: url(../assets/background_triple_png.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .gameboard::after {
   content: "";
@@ -35,7 +39,7 @@
   font-size: 1rem;
   padding: 0px;
   border-radius: 0px;
-  background: linear-gradient(to bottom, #696161, #d2d2d2);
+  background: linear-gradient(to bottom, #696161, #c1c1c198);
 }
 .weapons {
   gap: 25px;
@@ -49,6 +53,7 @@
   box-shadow: none;
   width: fit-content;
   filter: none;
+  z-index: 5;
 }
 .home img {
   height: 1rem;
@@ -78,4 +83,68 @@
   background-position: center;
   background-repeat: repeat;
   opacity: 0.1;
+}
+.warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  font-size: 1.2rem;
+}
+.warning-modal {
+  color: white;
+  font-family: "Saira Condensed", system-ui;
+  width: fit-content;
+  position: relative;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  overflow: hidden;
+}
+.warning-modal * {
+  font-size: 2rem;
+}
+.warning-modal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/dots-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+.warning-modal button {
+  font-family: "Saira Condensed", system-ui;
+  width: fit-content;
+  background-color: #444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.warning-modal button:hover {
+  background-color: #666;
+}
+.upper-warning > *:first-child {
+  font-weight: bold;
+}
+.lower-warning {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1rem;
 }
