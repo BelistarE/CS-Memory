@@ -396,3 +396,6 @@ button img:hover {
   z-index: 7;
   color: #a0dbed;
 }
+.elo span {
+  padding-left: 1.5rem;
+}

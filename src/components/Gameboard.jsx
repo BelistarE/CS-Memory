@@ -3,6 +3,9 @@ import "./gameboard-style.css";
 import loadingPlaceholder from "../assets/loading_placeholder.png";
 import home from "../assets/home.png";
 import Warning from "./Warning";
+import { useSpring, animated } from "@react-spring/web";
+import rollover from "../assets/sounds/mainmenu_rollover_01.wav";
+import { useSound } from "./SoundContext";
 const getNumberOfTiles = (difficulty) => {
   let tiles, columns, rows;
 
@@ -58,6 +61,14 @@ const shuffleArray = (array) => {
 };
 
 const GameBoard = ({ difficulty, onHome }) => {
+  //sound handling
+  const { isSoundOn, toggleSound } = useSound();
+  const playSound = (soundFile) => {
+    if (isSoundOn) {
+      const audio = new Audio(soundFile);
+      audio.play();
+    }
+  };
   //stuff for the warning modal
   const [showWarning, setShowWarning] = useState(false);
   const cancelHome = () => {
@@ -115,6 +126,12 @@ const GameBoard = ({ difficulty, onHome }) => {
       return prevSkins; // Return the original state if no valid skin was clicked
     });
   };
+  const props = useSpring({
+    number: score,
+    from: { number: 0 },
+    config: { duration: 1500, delay: 1000, easing: (t) => t * (2 - t) },
+    reset: true,
+  });
   const fetchNewSetOfSkins = () => {
     fetchRandomSkins(tiles).then(setSkins);
     setscore(0);
@@ -135,7 +152,12 @@ const GameBoard = ({ difficulty, onHome }) => {
           <div className="end-modal">
             <h2>GAME OVER</h2>
             <div className="elo">
-              <p>Your final score is: {score}</p>
+              <p>
+                Your final score is:
+                <animated.span>
+                  {props.number.to((n) => n.toFixed(0))}
+                </animated.span>
+              </p>
             </div>
             <p className="possible">Out of {tiles} possible skins</p>
             <div className="score-btn">
@@ -179,6 +201,7 @@ const GameBoard = ({ difficulty, onHome }) => {
                 <button
                   style={{ borderBottom: `7px solid ${borderColor}` }}
                   onClick={() => handleTileClick(index)}
+                  onMouseEnter={() => playSound(rollover)}
                 >
                   {skin.name ? (
                     <>
