@@ -66,7 +66,7 @@ function Difficulty({ onHome, onPlay, selectedDifficulty: initialDifficulty }) {
           </button>
         </div>
         <div className="buttons">
-          <button onClick={onHome}>Home</button>
+          <button onClick={onHome}>BACK</button>
           <button className="go" onClick={handleGoClick}>
             <p>GO</p>
           </button>

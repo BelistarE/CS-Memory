@@ -11,6 +11,9 @@
   background-size: cover;
   background-attachment: fixed;
 }
+.gameboard > * {
+  cursor: url("../assets/crosshair.png") 16 16, auto;
+}
 
 .gameboard::after {
   content: "";
@@ -45,6 +48,7 @@
 .weapons {
   width: fit-content;
   gap: 1.5rem;
+  cursor: url("../assets/crosshair.png") 16 16, auto;
 }
 .skinname {
   font-weight: 400;
@@ -82,19 +86,31 @@
   padding: 1rem;
   margin-left: 2rem;
 }
+.home:hover {
+  background-color: rgba(177, 177, 177, 0.279);
+}
 .home img {
   height: 1.5rem;
 }
 .score {
   margin-right: 2rem;
 }
+
 .tile button {
+  transition: box-shadow 0.2s ease-in-out;
 }
 .tile {
   color: white;
   font-weight: bold;
+  font-family: "Saira Condensed", system-ui;
 }
-
+.tile button:hover {
+  cursor: url("../assets/crosshair_focus.png") 16 16, pointer;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.8);
+}
+button img:hover {
+  cursor: url("../assets/crosshair_focus.png") 16 16, pointer;
+}
 .topbar {
   width: 100%;
   background-color: rgba(63, 60, 60, 0.518);
@@ -177,7 +193,6 @@
   background-color: #444;
   color: white;
   border: none;
-  cursor: pointer;
   border-radius: 5px;
 }
 

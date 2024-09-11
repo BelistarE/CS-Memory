@@ -18,8 +18,8 @@ function Warning({ showWarning, closeWarning, onHome }) {
           <p>Progress will be erased if you go back</p>
         </div>
         <div className="lower-warning">
-          <button onClick={handleCancel}>Cancel</button>
-          <button onClick={handleHome}>Continue</button>
+          <button onClick={handleHome}>QUIT</button>
+          <button onClick={handleCancel}>RETURN</button>
         </div>
       </div>
     </div>

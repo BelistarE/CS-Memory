@@ -178,7 +178,6 @@ button {
   color: white;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
   transition: background-color 0.3s ease;
   box-sizing: border-box;
   white-space: nowrap; /* Prevent text from wrapping */

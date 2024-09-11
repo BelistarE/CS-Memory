@@ -46,7 +46,7 @@ const fetchRandomSkins = async (numberOfSkins) => {
     const shuffled = data.sort(() => 0.5 - Math.random());
     return shuffled
       .slice(0, numberOfSkins)
-      .map((skin) => ({ ...skin, hasBeenClicked: false })); // Add hasBeenClicked property
+      .map((skin) => ({ ...skin, hasBeenClicked: false }));
   } catch (error) {
     console.error("Error fetching skin data:", error);
     return [];
@@ -71,6 +71,7 @@ const GameBoard = ({ difficulty, onHome }) => {
   };
   //stuff for the game logic
   const [skins, setSkins] = useState([]);
+  const [hasFailed, setHasFailed] = useState(false);
 
   const { tiles, columns, rows } = getNumberOfTiles(difficulty);
 
@@ -83,13 +84,29 @@ const GameBoard = ({ difficulty, onHome }) => {
   const handleTileClick = (index) => {
     setSkins((prevSkins) => {
       const newSkins = [...prevSkins];
-      const clickedSkin = newSkins[index];
-      if (clickedSkin) {
-        clickedSkin.hasBeenClicked = true;
+      const clickedSkin = { ...newSkins[index] }; // Make a copy of the skin because i was having issues(thanks google)
+
+      // Ensure clickedSkin is valid
+      if (!clickedSkin || !clickedSkin.name) {
+        console.error("Skin data not fully loaded");
+        return prevSkins;
+      }
+
+      // Check if the skin has already been clicked
+      if (clickedSkin.hasBeenClicked) {
+        setHasFailed(true);
+        console.log(`${clickedSkin.name} was clicked twice`);
+      } else {
+        clickedSkin.hasBeenClicked = true; // mark skin as clicked in the copy
+        newSkins[index] = clickedSkin; // update array with the modified skin
+        setHasFailed(false);
+        console.log(`${clickedSkin.name} was clicked for the first time`);
+        //shuffle
         const shuffledSkins = shuffleArray(newSkins);
         return shuffledSkins;
       }
-      return prevSkins;
+
+      return prevSkins; // Return the original state if no valid skin was clicked
     });
   };
 
@@ -106,7 +123,7 @@ const GameBoard = ({ difficulty, onHome }) => {
         </button>
         <p>The rules are simple... don&apos;t click on the same skin twice!</p>
         <div className="score">
-          <p>Score:</p>
+          <p>SCORE:</p>
         </div>
       </div>
       <div className="inventory">
