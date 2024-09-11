@@ -150,7 +150,11 @@ const GameBoard = ({ difficulty, onHome }) => {
         <button className="home" onClick={openWarning}>
           <img src={home} alt="Home" />
         </button>
-        <p>The rules are simple... don&apos;t click on the same skin twice!</p>
+        <div className="simple">
+          <p>
+            The rules are simple... don&apos;t click on the same skin twice!
+          </p>
+        </div>
         <div className="score">
           <p>
             SCORE: {score}/{tiles}

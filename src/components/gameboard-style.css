@@ -49,6 +49,7 @@
   width: fit-content;
   gap: 1.5rem;
   cursor: url("../assets/crosshair.png") 16 16, auto;
+  z-index: 1;
 }
 .skinname {
   font-weight: 400;
@@ -103,6 +104,7 @@
   color: white;
   font-weight: bold;
   font-family: "Saira Condensed", system-ui;
+  z-index: 1;
 }
 .tile button:hover {
   cursor: url("../assets/crosshair_focus.png") 16 16, pointer;
@@ -116,7 +118,6 @@ button img:hover {
   background-color: rgba(63, 60, 60, 0.518);
   margin-bottom: 1rem;
   display: flex;
-  padding: 0.4rem;
   justify-content: space-between;
   align-items: center; /* Align items vertically */
   position: relative; /* For absolute positioning of the button */
@@ -154,7 +155,7 @@ button img:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 10;
   font-size: 1.2rem;
 }
 .warning-modal {
@@ -168,9 +169,11 @@ button img:hover {
   backdrop-filter: blur(10px);
   text-align: center;
   overflow: hidden;
+  z-index: 11;
 }
 .warning-modal * {
   font-size: 2rem;
+  z-index: 11;
 }
 .warning-modal::before {
   content: "";
@@ -184,7 +187,7 @@ button img:hover {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.8;
-  z-index: -1;
+  z-index: 2;
 }
 
 .warning-modal button {
@@ -202,6 +205,10 @@ button img:hover {
 .upper-warning > *:first-child {
   font-weight: bold;
 }
+.upper-warning {
+  z-index: 11;
+  position: relative;
+}
 .lower-warning {
   display: flex;
   justify-content: space-around;
@@ -215,6 +222,7 @@ button img:hover {
 .dontShow {
   visibility: hidden;
   transition: visibility 0s 0.5s; /* Add delay to hide after animation */
+  z-index: 10;
 }
 
 .show {
@@ -239,6 +247,7 @@ button img:hover {
   width: 100%;
   height: 100%;
   transition: transform 0.5s ease-out; /* Smooth slide effect */
+  z-index: 10;
 }
 
 .show .end {
@@ -253,7 +262,7 @@ button img:hover {
   font-family: "Saira Condensed", system-ui;
   width: 100%;
   padding: 2rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   text-align: center;
   overflow: hidden;
@@ -261,6 +270,7 @@ button img:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
 .end-modal h2 {
@@ -303,7 +313,7 @@ button img:hover {
   background-repeat: repeat;
   background-size: 40%;
   opacity: 0.6;
-  z-index: -1;
+  z-index: 0;
 }
 
 .end-modal button {
@@ -357,4 +367,32 @@ button img:hover {
 }
 .possible {
   font-size: 1.5rem;
+}
+.simple {
+  color: #91c7d8;
+  text-shadow: 0px 0px 15px rgba(64, 114, 117, 0.8);
+
+  background-image: url(../assets/glitch_squares.gif);
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 80%;
+  background-color: #55657c;
+  background-blend-mode: multiply;
+  padding: 1rem;
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+.simple p {
+  padding-left: 10rem;
+  padding-right: 10rem;
+  z-index: 7;
+  color: #a0dbed;
 }
