@@ -76,6 +76,7 @@ const GameBoard = ({ difficulty, onHome }) => {
   const [showEndGame, setShowEndGame] = useState(false);
   const { tiles, columns, rows } = getNumberOfTiles(difficulty);
   const [showEndScreen, setShowEndScreen] = useState("dontShow");
+  const [errorTileIndex, setErrorTileIndex] = useState(null);
 
   useEffect(() => {
     fetchRandomSkins(tiles).then(setSkins);
@@ -98,6 +99,7 @@ const GameBoard = ({ difficulty, onHome }) => {
         setHasFailed(true);
         setShowEndGame(true);
         setShowEndScreen("show");
+        setErrorTileIndex(index);
         console.log(`${clickedSkin.name} was clicked twice`);
       } else {
         clickedSkin.hasBeenClicked = true; // mark skin as clicked in the copy
@@ -119,6 +121,7 @@ const GameBoard = ({ difficulty, onHome }) => {
     setHasFailed(false);
     setShowEndGame(false);
     setShowEndScreen("dontShow");
+    setErrorTileIndex(null);
   };
   return (
     <div className="gameboard">
@@ -164,10 +167,11 @@ const GameBoard = ({ difficulty, onHome }) => {
           }}
         >
           {Array.from({ length: adjustedTiles }).map((_, index) => {
-            const skin = skins[index] || {}; // Use an empty object if no skin for this tile
+            const skin = skins[index] || {};
             const borderColor = skin.rarity?.color || "rgb(176, 195, 217);";
+            const tileClass = errorTileIndex === index ? "tile red" : "tile";
             return (
-              <div key={index} className="tile">
+              <div key={index} className={tileClass}>
                 <button
                   style={{ borderBottom: `7px solid ${borderColor}` }}
                   onClick={() => handleTileClick(index)}
