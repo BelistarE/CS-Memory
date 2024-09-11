@@ -130,22 +130,22 @@ const GameBoard = ({ difficulty, onHome }) => {
         closeWarning={cancelHome}
         onHome={goHome}
       />
-      <div className={showEndScreen}>
-        {showEndGame && (
-          <div className="end">
-            <div className="end-modal">
-              <h2>GAME OVER</h2>
-              <div className="elo">
-                <p>Your final score is: {score}</p>
-              </div>
-              <div className="score-btn">
-                <button onClick={goHome}>Change Difficulty</button>
-                <button onClick={fetchNewSetOfSkins}>Play Again</button>
-              </div>
+      <div className={showEndScreen === "show" ? "show" : "dontShow"}>
+        <div className="end">
+          <div className="end-modal">
+            <h2>GAME OVER</h2>
+            <div className="elo">
+              <p>Your final score is: {score}</p>
+            </div>
+            <p className="possible">Out of {tiles} possible skins</p>
+            <div className="score-btn">
+              <button onClick={goHome}>Change Difficulty</button>
+              <button onClick={fetchNewSetOfSkins}>Play Again</button>
             </div>
           </div>
-        )}
+        </div>
       </div>
+
       <div className="topbar">
         <button className="home" onClick={openWarning}>
           <img src={home} alt="Home" />

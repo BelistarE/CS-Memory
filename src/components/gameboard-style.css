@@ -213,12 +213,15 @@ button img:hover {
   padding-bottom: 0px;
 }
 .dontShow {
-  display: none;
+  visibility: hidden;
+  transition: visibility 0s 0.5s; /* Add delay to hide after animation */
 }
+
 .show {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 1s; /* Instant visibility with fading */
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(41, 41, 41, 0.6);
@@ -228,19 +231,60 @@ button img:hover {
   z-index: 999;
   font-size: 1.2rem;
 }
+
+.end {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Start off-screen to the left */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-out; /* Smooth slide effect */
+}
+
+.show .end {
+  transform: translateX(100%); /* Slide into view when .show is applied */
+}
+.dontShow .end {
+  transform: translateX(-100%); /* Slide into view when .show is applied */
+}
+
 .end-modal {
   color: white;
   font-family: "Saira Condensed", system-ui;
   width: 100%;
-  position: relative;
   padding: 2rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   text-align: center;
   overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.end {
-  width: 100%;
+
+.end-modal h2 {
+  color: #91c7d8;
+  text-shadow: 0px 0px 15px rgba(64, 114, 117, 0.8);
+
+  background-image: url(../assets/glitch_squares.gif),
+    linear-gradient(to bottom, #ffffff, #91c7d8);
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 30%;
+  background-color: #3b3e45;
+  background-blend-mode: multiply;
+  padding: 1rem;
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 0) 60%
+  );
 }
 .end-modal * {
   font-size: 2rem;
@@ -310,4 +354,7 @@ button img:hover {
   100% {
     border-color: red;
   }
+}
+.possible {
+  font-size: 1.5rem;
 }
