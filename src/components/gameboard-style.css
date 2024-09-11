@@ -212,3 +212,86 @@ button img:hover {
   padding-top: 0px;
   padding-bottom: 0px;
 }
+.dontShow {
+  display: none;
+}
+.show {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(41, 41, 41, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  font-size: 1.2rem;
+}
+.end-modal {
+  color: white;
+  font-family: "Saira Condensed", system-ui;
+  width: 100%;
+  position: relative;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  overflow: hidden;
+}
+.end {
+  width: 100%;
+}
+.end-modal * {
+  font-size: 2rem;
+  z-index: 10;
+  text-align: center;
+}
+.end-modal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/dots-background.png");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 40%;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.end-modal button {
+  font-family: "Saira Condensed", system-ui;
+  width: fit-content;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 0px;
+}
+
+.end-modal button:hover {
+  background-color: #666;
+}
+
+.elo {
+  position: relative;
+  background-image: url("../assets/premier-rankup-bg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 1rem;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+.end-modal .score-btn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.score-btn > button {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  width: 20%;
+}

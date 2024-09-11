@@ -72,8 +72,10 @@ const GameBoard = ({ difficulty, onHome }) => {
   //stuff for the game logic
   const [skins, setSkins] = useState([]);
   const [hasFailed, setHasFailed] = useState(false);
-
+  const [score, setscore] = useState(0);
+  const [showEndGame, setShowEndGame] = useState(false);
   const { tiles, columns, rows } = getNumberOfTiles(difficulty);
+  const [showEndScreen, setShowEndScreen] = useState("dontShow");
 
   useEffect(() => {
     fetchRandomSkins(tiles).then(setSkins);
@@ -91,16 +93,18 @@ const GameBoard = ({ difficulty, onHome }) => {
         console.error("Skin data not fully loaded");
         return prevSkins;
       }
-
       // Check if the skin has already been clicked
       if (clickedSkin.hasBeenClicked) {
         setHasFailed(true);
+        setShowEndGame(true);
+        setShowEndScreen("show");
         console.log(`${clickedSkin.name} was clicked twice`);
       } else {
         clickedSkin.hasBeenClicked = true; // mark skin as clicked in the copy
         newSkins[index] = clickedSkin; // update array with the modified skin
         setHasFailed(false);
         console.log(`${clickedSkin.name} was clicked for the first time`);
+        setscore((prevScore) => prevScore + 1);
         //shuffle
         const shuffledSkins = shuffleArray(newSkins);
         return shuffledSkins;
@@ -109,7 +113,13 @@ const GameBoard = ({ difficulty, onHome }) => {
       return prevSkins; // Return the original state if no valid skin was clicked
     });
   };
-
+  const fetchNewSetOfSkins = () => {
+    fetchRandomSkins(tiles).then(setSkins);
+    setscore(0);
+    setHasFailed(false);
+    setShowEndGame(false);
+    setShowEndScreen("dontShow");
+  };
   return (
     <div className="gameboard">
       <Warning
@@ -117,13 +127,31 @@ const GameBoard = ({ difficulty, onHome }) => {
         closeWarning={cancelHome}
         onHome={goHome}
       />
+      <div className={showEndScreen}>
+        {showEndGame && (
+          <div className="end">
+            <div className="end-modal">
+              <h2>GAME OVER</h2>
+              <div className="elo">
+                <p>Your final score is: {score}</p>
+              </div>
+              <div className="score-btn">
+                <button onClick={goHome}>Change Difficulty</button>
+                <button onClick={fetchNewSetOfSkins}>Play Again</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
       <div className="topbar">
         <button className="home" onClick={openWarning}>
           <img src={home} alt="Home" />
         </button>
         <p>The rules are simple... don&apos;t click on the same skin twice!</p>
         <div className="score">
-          <p>SCORE:</p>
+          <p>
+            SCORE: {score}/{tiles}
+          </p>
         </div>
       </div>
       <div className="inventory">
