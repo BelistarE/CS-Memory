@@ -39,17 +39,24 @@
   z-index: 3;
 }
 .inventory {
-  flex-grow: 1;
-  overflow-y: auto;
-  width: 100%;
+  max-width: 100vw; /* Prevents horizontal overflow */
+  max-height: 100%; /* Sets height to fill the viewport */
+  overflow: hidden; /* Prevents overflow */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  flex: 1;
 }
 .weapons {
   width: fit-content;
-  gap: 1.5rem;
+  gap: 2%;
   cursor: url("../assets/crosshair.png") 16 16, auto;
   z-index: 1;
+  flex: 1;
+  height: 100%;
+  box-sizing: border-box;
 }
 .skinname {
   font-weight: 400;
@@ -57,11 +64,6 @@
 }
 .gun {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.inventory img {
-  width: 10rem;
-  height: auto;
 }
 
 .weapons button {
@@ -96,9 +98,22 @@
 .score {
   margin-right: 2rem;
 }
-
+.tile {
+  display: flex;
+  flex-direction: column;
+}
 .tile button {
   transition: box-shadow 0.2s ease-in-out;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tile button img {
+  flex: 1;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
 }
 .tile {
   color: white;
@@ -398,4 +413,8 @@ button img:hover {
 }
 .elo span {
   padding-left: 1.5rem;
+}
+.gamescreen {
+  display: flex;
+  flex-direction: column;
 }
