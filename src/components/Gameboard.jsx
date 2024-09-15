@@ -7,28 +7,32 @@ import { useSpring, animated } from "@react-spring/web";
 import rollover from "../assets/sounds/mainmenu_rollover_01.wav";
 import { useSound } from "./SoundContext";
 const getNumberOfTiles = (difficulty) => {
-  let tiles, columns, rows;
+  let tiles, columns, rows, padding;
 
   switch (difficulty) {
     case "easy":
       tiles = 9;
       columns = 3;
       rows = 3;
+      padding = 20;
       break;
     case "medium":
       tiles = 12;
       columns = 4;
       rows = 3;
+      padding = 10;
       break;
     case "hard":
       tiles = 15;
       columns = 5;
       rows = 3;
+      padding = 5;
       break;
     case "impossible":
       tiles = 18;
       columns = 6;
       rows = 3;
+      padding = 0;
       break;
     default:
       tiles = 8;
@@ -37,7 +41,7 @@ const getNumberOfTiles = (difficulty) => {
       break;
   }
 
-  return { tiles, columns, rows };
+  return { tiles, columns, rows, padding };
 };
 
 const fetchRandomSkins = async (numberOfSkins) => {
@@ -85,7 +89,7 @@ const GameBoard = ({ difficulty, onHome }) => {
   const [hasFailed, setHasFailed] = useState(false);
   const [score, setscore] = useState(0);
   const [showEndGame, setShowEndGame] = useState(false);
-  const { tiles, columns, rows } = getNumberOfTiles(difficulty);
+  const { tiles, columns, rows, padding } = getNumberOfTiles(difficulty);
   const [showEndScreen, setShowEndScreen] = useState("dontShow");
   const [errorTileIndex, setErrorTileIndex] = useState(null);
 
@@ -190,6 +194,8 @@ const GameBoard = ({ difficulty, onHome }) => {
             display: "grid",
             gridTemplateColumns: `repeat(${columns},minmax(100px, 1fr))`,
             gridTemplateRows: `repeat(${rows}, minmax(100px, 1fr))`,
+            paddingLeft: `${padding}%`,
+            paddingRight: `${padding}%`,
           }}
         >
           {Array.from({ length: adjustedTiles }).map((_, index) => {
@@ -214,7 +220,9 @@ const GameBoard = ({ difficulty, onHome }) => {
                 {skin.name ? (
                   <>
                     <p className="gun">{skin.name.split(" | ")[0]}</p>
-                    <p className="skinname">{skin.name.split(" | ")[1]}</p>
+                    <p className="skinname">
+                      {skin.name.split(" | ")[1] || " "}
+                    </p>
                   </>
                 ) : (
                   <>

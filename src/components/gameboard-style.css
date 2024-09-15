@@ -118,7 +118,7 @@
 }
 .tile button img {
   flex: 1;
-  object-fit: contain;
+  width: auto;
   height: 100%;
 }
 .tile {
