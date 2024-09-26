@@ -11,3 +11,7 @@ A Counter Strike 2 memory game for [The Odin Project](https://www.theodinproject
 - sounds decompiled by [Source 2 Viewer](https://valveresourceformat.github.io/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/803af7ba-3415-4533-bac1-72221ba1324d/deploy-status)](https://app.netlify.com/sites/cs-memory/deploys)
+
+## TODO
+1. Add win screen
+2. Add sounds to all the buttons
