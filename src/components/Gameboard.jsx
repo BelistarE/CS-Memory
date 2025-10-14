@@ -47,7 +47,7 @@ const getNumberOfTiles = (difficulty) => {
 const fetchRandomSkins = async (numberOfSkins) => {
   try {
     const response = await fetch(
-      "https://bymykel.github.io/CSGO-API/api/en/skins.json"
+      "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json"
     );
     const data = await response.json();
     const shuffled = data.sort(() => 0.5 - Math.random());
